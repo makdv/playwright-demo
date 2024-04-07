@@ -1,18 +1,23 @@
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test.describe('Test our page', () => {
+  test('Shows correct titles', async ({ page }) => {
+    await page.goto('/');
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
+    await expect(page.getByTestId('title')).toHaveText(
+      'Добро пожаловать в мир Playwright!',
+    );
+    await page.getByTestId('enter').click();
+    await expect(page.getByText('Мы вошли!')).toBeVisible();
+  });
+  test('should read from clipboard', async ({ page }) => {
+    await page.goto('/');
+    await page.getByText('Копировать').click();
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+    const clipboardText = await page.evaluate(() =>
+      navigator.clipboard.readText(),
+    );
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+    expect(clipboardText).toContain('Copied!');
+  });
 });

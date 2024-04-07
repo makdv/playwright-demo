@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Title</title>
+        <script>
+            const copyToClipboard = () => {
+                navigator.clipboard.writeText('Copied!')
+            };
+            const enter = () => {
+                window.entered = true;
+                document.querySelector('.title').textContent = 'Мы вошли!';
+                document.querySelector('.enter').textContent = 'Назад';
+            }
+            const back = () => {
+                window.entered = false;
+                document.querySelector('.title').textContent = 'Добро пожаловать в мир Playwright!';
+                document.querySelector('.enter').textContent = 'Войти';
+            }
+        </script>
+    </head>
+    <body>
+      <main style="display: flex;align-items: center;justify-content: center; flex-direction:column; padding: 30px 0;">
+        <div>
+          <h1 class="title" data-test-id="title" style="color: #447DC1;">Добро пожаловать в мир Playwright!</h1>
+        </div>
+        <div>
+          <button class="enter" data-test-id="enter" onclick="window.entered ? back() : enter()">Войти</button>
+          <button data-test-id="copy" onclick="copyToClipboard()">Копировать</button>
+        </div>
+      </main>
+    </body>
+</html>

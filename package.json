@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "playwright test"
+    "start": "http-server -p 3000 ./page",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.43.0",
-    "@types/node": "^20.12.4"
+    "@types/node": "^20.12.4",
+    "http-server": "13.0.1"
   }
 }
