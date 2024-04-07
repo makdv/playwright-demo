@@ -7,6 +7,10 @@ const projectMobile = {
   use: {
     channel: 'chrome',
     viewport: { width: 390, height: 844 },
+    contextOptions: {
+      // chromium-specific permissions
+      permissions: ['clipboard-read', 'clipboard-write'],
+    },
     userAgent:
       'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1',
   },
@@ -16,6 +20,10 @@ const projectDesktop = {
   use: {
     ...devices['Desktop Chrome'],
     channel: 'chrome',
+    contextOptions: {
+      // chromium-specific permissions
+      permissions: ['clipboard-read', 'clipboard-write'],
+    },
   },
 };
 
@@ -53,6 +61,10 @@ export default defineConfig({
       grep: /@snapshot/,
       use: {
         ...devices['Desktop Chrome'],
+        contextOptions: {
+          // chromium-specific permissions
+          permissions: ['clipboard-read', 'clipboard-write'],
+        },
       },
     },
     {
@@ -64,12 +76,22 @@ export default defineConfig({
       use: {
         viewport: projectMobile.use.viewport,
         userAgent: projectMobile.use.userAgent,
+        contextOptions: {
+          // chromium-specific permissions
+          permissions: ['clipboard-read', 'clipboard-write'],
+        },
       },
     },
     {
       name: 'firefox',
       use: {
         ...devices['Desktop Firefox'],
+        launchOptions: {
+          firefoxUserPrefs: {
+            'dom.events.asyncClipboard.readText': true,
+            'dom.events.testing.asyncClipboard': true,
+          },
+        },
       },
     },
     /* {
@@ -82,6 +104,10 @@ export default defineConfig({
       name: 'Mobile Chrome',
       use: {
         ...devices['Pixel 5'],
+        contextOptions: {
+          // chromium-specific permissions
+          permissions: ['clipboard-read', 'clipboard-write'],
+        },
       },
     },
     {

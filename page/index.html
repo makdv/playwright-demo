@@ -9,6 +9,7 @@
             };
             const enter = () => {
                 window.entered = true;
+                window.metric('hello');
                 document.querySelector('.title').textContent = 'Мы вошли!';
                 document.querySelector('.enter').textContent = 'Назад';
             }

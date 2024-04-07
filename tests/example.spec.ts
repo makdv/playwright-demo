@@ -1,4 +1,5 @@
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
+import { test } from '../fixture';
 
 test.describe('Test our page', () => {
   test('Shows correct titles', async ({ page }) => {
@@ -19,5 +20,11 @@ test.describe('Test our page', () => {
     );
 
     expect(clipboardText).toContain('Copied!');
+  });
+  test('should send metric on click', async ({ page, metricLog }) => {
+    await page.goto('/');
+    await page.getByTestId('enter').click();
+
+    await expect(metricLog).toEqual([['hello']]);
   });
 });
