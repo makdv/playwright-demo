@@ -6,13 +6,15 @@
   "scripts": {
     "start": "http-server -p 3000 ./page",
     "test": "playwright test",
-    "test:ui": "playwright test --ui"
+    "test:ui": "playwright test --ui",
+    "test:ss": "docker run --rm --user pwuser --network host -v $(pwd):/work/ -w /work/ mcr.microsoft.com/playwright:v1.44.0-jammy sh -c 'npx playwright test --project=desktop:snapshots  --project=mobile:snapshots'"
+
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.43.0",
+    "@playwright/test": "^1.44.0",
     "@types/node": "^20.12.4",
     "http-server": "13.0.1"
   }

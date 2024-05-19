@@ -27,4 +27,11 @@ test.describe('Test our page', () => {
 
     await expect(metricLog).toEqual([['hello']]);
   });
+  test.describe('screenshot', () => {
+    test('should match page @snapshot', async ({ page }) => {
+      await page.goto('/');
+
+      await expect(await page.locator('body')).toHaveScreenshot();
+    });
+  });
 });

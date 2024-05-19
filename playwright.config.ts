@@ -39,8 +39,10 @@ export default defineConfig({
     baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
     testIdAttribute: 'data-test-id',
+    screenshot: 'only-on-failure',
   },
-
+  snapshotPathTemplate:
+    '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{ext}',
   /* Configure projects for major browsers */
   projects: [
     {
