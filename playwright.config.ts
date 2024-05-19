@@ -1,4 +1,6 @@
+import type { PlaywrightTestConfig } from '@playwright/test';
 import { defineConfig, devices } from '@playwright/test';
+import { CustomOptions } from './types';
 
 const mobileSpecs = /.*mobile.spec.ts$/;
 
@@ -40,6 +42,7 @@ export default defineConfig({
     trace: 'on-first-retry',
     testIdAttribute: 'data-test-id',
     screenshot: 'only-on-failure',
+    coverageOptions: { useIstanbulCoverage: true },
   },
   snapshotPathTemplate:
     '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{ext}',
@@ -123,4 +126,4 @@ export default defineConfig({
     reuseExistingServer: true,
     timeout: 60000,
   },
-});
+} as PlaywrightTestConfig<CustomOptions>);
