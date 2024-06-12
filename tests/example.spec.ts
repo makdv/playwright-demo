@@ -1,5 +1,11 @@
 import { expect } from '@playwright/test';
-import { test } from '../fixture';
+import { Page, BrowserContext } from '@playwright/test';
+import {
+  setupEnhancedContext,
+  setupEnhancedPage,
+  sharedMetricLog,
+  test,
+} from '../fixture';
 
 test.describe('Test our page', () => {
   test('Shows correct titles', async ({ page }) => {
