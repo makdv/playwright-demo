@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Title</title>
+        <link href="./styles.css" rel="stylesheet" />
+        <style>
+          body {
+            font-family: "Inter", sans-serif;
+          }
+        </style>
+        <script>
+            const copyToClipboard = () => {
+                navigator.clipboard.writeText('Copied!')
+            };
+            const enter = () => {
+                window.entered = true;
+                if (typeof window.metric === 'function') {
+                  window.metric('hello');
+                }
+                document.querySelector('.title').textContent = 'Мы вошли!';
+                document.querySelector('.enter').textContent = 'Назад';
+            }
+            const back = () => {
+                window.entered = false;
+                document.querySelector('.title').textContent = 'Добро пожаловать в мир Playwright!';
+                document.querySelector('.enter').textContent = 'Войти';
+            }
+        </script>
+    </head>
+    <body>
+      <main style="display: flex;align-items: center;justify-content: center; flex-direction:column; padding: 30px 0;">
+        <section>
+          <h1 class="title" data-test-id="title" style="color: #447DC1;">Добро пожаловать в мир Playwright!</h1>
+        </section>
+        <section>
+          <button class="enter" data-test-id="enter" onclick="window.entered ? back() : enter()">Войти</button>
+          <button data-test-id="copy" onclick="copyToClipboard()">Копировать</button>
+        </section>
+        <section>
+          <img src="https://playwright.dev/img/logos/Browsers.png" alt="browser-images" style="width:500px;margin-top:20px;"/>
+        </section>
+      </main>
+    </body>
+</html>
